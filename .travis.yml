@@ -1,0 +1,13 @@
+install:
+    - sudo apt-get update
+    - sudo apt-get install -y libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev
+language: minimal
+script:
+    - mkdir doomretro/usr doomretro/usr/bin
+    - git clone --depth 1 https://github.com/bradharding/doomretro build
+    - cd build
+    - cmake .
+    - make
+    - cd ..
+    - cp build/doomretro doomretro/usr/bin
+    - dpkg -b doomretro
